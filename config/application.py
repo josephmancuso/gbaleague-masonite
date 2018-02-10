@@ -74,12 +74,14 @@ PROVIDERS = [
     'masonite.providers.WhitenoiseProvider.WhitenoiseProvider',
     'masonite.providers.MailProvider.MailProvider',
     'masonite.providers.UploadProvider.UploadProvider',
+    'masonite.providers.ViewProvider.ViewProvider',
 
     # Third Party Providers
 
     # Application Providers
     'app.providers.UserModelProvider.UserModelProvider',
     'app.providers.MiddlewareProvider.MiddlewareProvider',
+    'app.providers.ViewComposer.ViewComposer',
 ]
 
 '''
