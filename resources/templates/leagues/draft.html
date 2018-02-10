@@ -1,0 +1,81 @@
+{% extends 'leagues/base.html' %}
+
+
+{% block league_content_left %}
+{% if request.user() %}
+<div class="panel panel-default">
+    <div class="panel-heading">My Queued Pokemon</div>
+    <div class="panel-body">
+        
+        {% for pokemon in request.user().get_queued_pokemon(league) %}
+            <div>{{ pokemon.queued.name }}</div>
+            
+            <div>
+                <form action="/league/{{ league.id}}/draft" method="POST">
+                    <input type="hidden" name="pokemon" value="{{ pokemon.queue_id }}">
+                    <button type="submit" name="draft" class="btn btn-primary">Draft</button>
+                    <button type="submit" name="unqueue" class="btn btn-danger">Unqueue</button>
+                </form>
+            </div>
+        {% endfor %}
+        
+    </div>
+</div>
+{% endif %}
+
+
+{% if request.user() %}
+<div class="panel panel-success">
+    <div class="panel-heading">My Team</div>
+    <div class="panel-body">
+        {% for pokemon in request.user().get_team_pokemon(league) %}
+            <div>{{ pokemon.pokemon.name }}</div>
+            
+            <div>
+                <form action="/league/{{ league.id}}/draft" method="POST">
+                    <input type="hidden" name="pokemon" value="{{ pokemon.pokemon_id }}">
+                    <button type="submit" name="draft" class="btn btn-primary">Draft</button>
+                    <button type="submit" name="unqueue" class="btn btn-danger">Unqueue</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+
+{% block league_content %}
+<div class="panel panel-default">
+    <div class="panel-heading">Draft</div>
+    <div class="panel-body">
+        {% if request.has('message') %}
+            <div class="alert alert-success">{{ request.input('message') }}</div>
+        {% endif %}
+        {% for pokemon in league.draftable_pokemon() %}
+            <div class="col-xs-12 col-md-4 text-center">
+                <div>{{ pokemon.name }}</div>
+
+                <div>
+                <form action="/league/{{ league.id}}/draft" method="POST">
+                    <input type="hidden" name="pokemon" value="{{ pokemon.id }}">
+                     {% if request.user() %}
+                        <button type="submit" name="draft" class="btn btn-primary">Draft</button>
+                    
+                        {% if not pokemon.id in request.user().queued_pokemon(league) %}
+                            <button type="submit" name="queue" class="btn btn-success">Queue</button>
+                        {% else %}
+                            <button type="submit" name="unqueue" class="btn btn-danger">Unqueue</button>
+                        {% endif %}
+                    {% else %}
+                    <div>Sign in to start drafting</div>
+                    {% endif %}
+                </form>
+                </div>
+
+            <br>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

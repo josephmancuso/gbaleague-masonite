@@ -1,0 +1,10 @@
+{% extends 'leagues/base.html' %} 
+
+{% block league_content %}
+<div class="panel panel-default">
+    <div class="panel-heading">Teams</div>
+    <div class="panel-body">
+        {% for team in teams %} {{ team.name }} {% endfor %}
+    </div>
+</div>
+{% endblock %}
