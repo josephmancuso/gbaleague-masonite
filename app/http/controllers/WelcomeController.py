@@ -8,6 +8,6 @@ class WelcomeController(object):
     def __init__(self):
         pass
 
-    def show(self, Application, request: Request):
+    def show(self, Application, View, request: Request):
         ''' Show Welcome Template '''
-        return view('welcome', {'app': Application})
+        return View('index')
