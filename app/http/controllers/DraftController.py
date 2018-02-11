@@ -1,5 +1,4 @@
 ''' A Module Description '''
-from masonite.view import view
 from app.League import League
 from app.Pokemon import Pokemon
 from app.DraftedPokemon import DraftedPokemon
@@ -12,10 +11,10 @@ class DraftController(object):
     def __init__(self):
         pass
 
-    def show(self, Request, View):
+    def show(self, Request):
         league = League.find(Request.param('id'))
 
-        return View('leagues/draft', {'league': league})
+        return view('leagues/draft', {'league': league})
     
     def draft(self, Request):
         league = League.find(Request.param('id'))

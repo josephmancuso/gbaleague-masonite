@@ -18,7 +18,7 @@ DRIVER = os.getenv('STORAGE_DRIVER', 'disk')
 
 '''
 |--------------------------------------------------------------------------
-| Drivers
+| Storage Drivers
 |--------------------------------------------------------------------------
 |
 | Different drivers you can use for storing file uploads.

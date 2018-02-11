@@ -49,7 +49,7 @@ KEY = os.environ.get('KEY')
 |
 '''
 
-URL = 'http://localhost'
+URL = 'http://localhost:8000'
 
 '''
 |--------------------------------------------------------------------------
@@ -75,6 +75,7 @@ PROVIDERS = [
     'masonite.providers.MailProvider.MailProvider',
     'masonite.providers.UploadProvider.UploadProvider',
     'masonite.providers.ViewProvider.ViewProvider',
+    'masonite.providers.HelpersProvider.HelpersProvider',
 
     # Third Party Providers
 

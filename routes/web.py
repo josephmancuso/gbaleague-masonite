@@ -16,5 +16,5 @@ ROUTES = ROUTES + [
     Post().route('/login', 'LoginController@store'),
     Get().route('/register', 'RegisterController@show'),
     Post().route('/register', 'RegisterController@store'),
-    Get().route('/home', 'HomeController@show'),
+    Get().route('/home', 'HomeController@show').middleware('auth'),
 ]

@@ -2,12 +2,12 @@
 
 
 {% block league_content_left %}
-{% if request.user() %}
+{% if auth() %}
 <div class="panel panel-default">
     <div class="panel-heading">My Queued Pokemon</div>
     <div class="panel-body">
         
-        {% for pokemon in request.user().get_queued_pokemon(league) %}
+        {% for pokemon in auth().get_queued_pokemon(league) %}
             <div>{{ pokemon.queued.name }}</div>
             
             <div>
